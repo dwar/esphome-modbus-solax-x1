@@ -242,6 +242,10 @@ std::string SolaxX1::error_bits_to_string_(const uint32_t mask) {
     }
   }
 
+  if (first) {
+    errors_list.append("No Fault");
+  }
+
   return errors_list;
 }
 
