@@ -72,9 +72,13 @@ void SolaxX1::on_modbus_solax_info(const std::vector<uint8_t> &data) {
 }
 
 void SolaxX1::on_modbus_solax_data(const std::vector<uint8_t> &data) {
-  if (data.size() != 50) {
-    ESP_LOGW(TAG, "Invalid response size: %zu", data.size());
+  if (data.size() < 50) {
+    ESP_LOGW(TAG, "Invalid response size: %zu, expected 50", data.size());
     return;
+  }
+
+  if (data.size() > 50) {
+    ESP_LOGV(TAG, "Invalid response size: %zu, only 50 specified. (extra bytes are ignored)", data.size());
   }
 
   auto solax_get_16bit = [&](size_t i) -> uint16_t {
