@@ -72,7 +72,7 @@ void SolaxX1::on_modbus_solax_info(const std::vector<uint8_t> &data) {
 }
 
 void SolaxX1::on_modbus_solax_data(const std::vector<uint8_t> &data) {
-  if (data.size() != 52) {
+  if (data.size() != 50) {
     ESP_LOGW(TAG, "Invalid response size: %zu", data.size());
     return;
   }
