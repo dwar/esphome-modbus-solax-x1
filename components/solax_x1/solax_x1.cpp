@@ -150,7 +150,9 @@ void SolaxX1::on_modbus_solax_data(const std::vector<uint8_t> &data) {
   this->publish_state_(this->ac_voltage_sensor_, ac_voltage);
   this->publish_state_(this->ac_frequency_sensor_, ac_frequency);
   this->publish_state_(this->ac_power_sensor_, ac_power);
-  this->publish_state_(this->energy_total_sensor_, energy_total);
+  if (energy_total > 0) {
+   this->publish_state_(this->energy_total_sensor_, energy_total);
+  }
   this->publish_state_(this->runtime_total_sensor_, runtime_total);
   this->publish_state_(this->mode_sensor_, mode);
   this->publish_state_(this->error_bits_sensor_, error_bits);
